@@ -138,13 +138,17 @@ struct MappingData {
 
 class GridMap{
     public:
-        GridMap(rclcpp::Node::SharedPtr nh) : node_(nh) {}
+      GridMap(rclcpp::Node::SharedPtr nh)
+          : node_(nh),
+            tfBuffer_(std::make_shared<tf2_ros::Buffer>(node_->get_clock())),
+            tfListener_(*tfBuffer_) {}
 
         ~GridMap() {}
         typedef std::shared_ptr<GridMap> Ptr;
 
         enum { INVALID_IDX = -10000 };
 
+        void initMap(rclcpp::Node::SharedPtr nh);
         void initMap(rclcpp::Node::SharedPtr nh);
 
         /* occupancy map management */
@@ -219,12 +223,14 @@ class GridMap{
 
     private:
         rclcpp::Node::SharedPtr node_;
+        std::shared_ptr<tf2_ros::Buffer> tfBuffer_;
+        tf2_ros::TransformListener tfListener_;
         MappingParameters mp_;
         MappingData md_;
 
         // scan to pointCloud2 projector
         laser_geometry::LaserProjection projector_;
-        tf2_ros::TransformListener tfListener_;
+
 
         // sensor: message filter
         typedef message_filters::sync_policies::ApproximateTime<sensor_msgs::msg::LaserScan, nav_msgs::msg::Odometry> SyncPolicyScanOdom;
