@@ -3,7 +3,6 @@
 
 
 #include "rclcpp/rclcpp.hpp"
-#include "rclcpp/rclcpp.hpp"
 #include <rviz/tool.h>
 #include <std_srvs/Empty.h>
 
