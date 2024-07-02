@@ -50,7 +50,7 @@ echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-a
 # Getting Packages
 echo "Installing Deps...:"
 
-sudo apt install -y $(curl https://raw.githubusercontent.com/Arena-Rosnav/arena-rosnav/ros2/setup/install1/package.list)
+sudo apt install -y $(curl https://raw.githubusercontent.com/Jokrasa1011/ros2-migration/fix_installs/arena/arena-rosnav/setup/install1/package.list)
 
 if ! grep -q "source /opt/ros/humble/setup.bash" ~/.bashrc; then
   echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
