@@ -1,7 +1,7 @@
 #!/bin/bash -i
 
 TARGET_DIR=${1:-~/arena_ws}
-branch=${2:-master}
+branch=${2:-ros2}
 
 set -e
  
@@ -18,10 +18,10 @@ cd ${TARGET_DIR}
 # clone arena-rosnav
 if [[ -d ${TARGET_DIR}/src/arena/arena-rosnav ]]; then
   cd ${TARGET_DIR}/src/arena/arena-rosnav
-  git pull https://github.com/Arena-Rosnav/arena-rosnav.git ${branch}
+  git pull https://github.com/jokrasa1011/arena-rosnav.git ${branch}
   cd ${TARGET_DIR}
 else
-  git clone --branch ${branch} https://github.com/Arena-Rosnav/arena-rosnav.git src/arena/arena-rosnav
+  git clone --branch ${branch} https://github.com/jokrasa1011/arena-rosnav.git src/arena/arena-rosnav
 fi
 
 until vcs import src < src/arena/arena-rosnav/.repos ; do echo "failed to update, retrying..." ; done
