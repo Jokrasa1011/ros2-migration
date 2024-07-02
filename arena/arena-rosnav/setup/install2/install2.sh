@@ -32,12 +32,9 @@ ln -s src/arena/arena-rosnav/setup/install2/* src/arena/arena-rosnav/
 pip install docutils==0.21.post1
 #python env init
 cd src/arena/arena-rosnav
-export PYTHON_KEYRING_BACKEND=keyring.backends.fail.Keyring # resolve faster
-poetry run poetry install --no-root
-poetry lock --no-update
-poetry env use python3.8
-. "$(poetry env info -p)/bin/activate"
-cd ${TARGET_DIR}
+export PYTHON_KEYRING_BACKEND=keyring.backends.fail.Keyring 
+$HOME/.local/bin/poetry install || \
+                ($HOME/.local/bin/poetry lock --no-update && $HOME/.local/bin/poetry install)
 #
  
 # Missing Deps
