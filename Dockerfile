@@ -31,7 +31,7 @@ WORKDIR ${TARGET_DIR}
 
 # Download and modify the install scripts
 RUN curl -o install1.sh https://raw.githubusercontent.com/Jokrasa1011/ros2-migration/fix_installs/arena/arena-rosnav/setup/install1/install.sh \
-    && curl -o install2.sh https://raw.githubusercontent.com/Jokrasa1011/ros2-migration/main/arena/arena-rosnav/setup/install2/install2.sh \
+    && curl -o install2.sh https://raw.githubusercontent.com/Jokrasa1011/ros2-migration/fix_installs/arena/arena-rosnav/setup/install2/install2.sh \
     && sed -i 's/sudo //g' install1.sh install2.sh \
     && sed -i 's/read -p.*choice$/choice="Y"/' install1.sh \
     && sed -i 's/read -p.*init_choice$/init_choice="r"/' install1.sh \

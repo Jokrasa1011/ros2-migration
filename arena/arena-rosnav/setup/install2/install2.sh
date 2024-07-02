@@ -51,7 +51,7 @@ echo "Installing Project...:"
 exit 1
 #TODO
 
-catkin build
+colcon build
 
 export ROS_MASTER_URI=http://127.0.0.1:11311/
 export ROS_IP=127.0.0.1
