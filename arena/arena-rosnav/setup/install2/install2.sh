@@ -29,7 +29,7 @@ until vcs import src < src/arena/arena-rosnav/.repos ; do echo "failed to update
 
 #compat
 ln -s src/arena/arena-rosnav/setup/install2/* src/arena/arena-rosnav/
- 
+pip install docutils==0.21.post1
 #python env init
 cd src/arena/arena-rosnav
 export PYTHON_KEYRING_BACKEND=keyring.backends.fail.Keyring # resolve faster
@@ -48,7 +48,7 @@ rosdep update && rosdep install --from-paths src --ignore-src -r -y
 # Project Install
 echo "Installing Project...:"
 
-exit 1
+exit 12
 #TODO
 
 colcon build
