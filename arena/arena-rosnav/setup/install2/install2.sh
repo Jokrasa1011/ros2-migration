@@ -29,7 +29,6 @@ until vcs import src < src/arena/arena-rosnav/.repos ; do echo "failed to update
 
 #compat
 ln -s src/arena/arena-rosnav/setup/install2/* src/arena/arena-rosnav/
-pip install docutils==0.21.post1
 #python env init
 cd src/arena/arena-rosnav
 export PYTHON_KEYRING_BACKEND=keyring.backends.fail.Keyring 
