@@ -28,19 +28,20 @@ until vcs import src < src/arena/arena-rosnav/.repos ; do echo "failed to update
 #
 
 #compat
-ln -s src/arena/arena-rosnav/setup/install2/* src/arena/arena-rosnav/
+ln -rs src/arena/arena-rosnav/setup/install2/* src/arena/arena-rosnav/
 #python env init
 cd src/arena/arena-rosnav
 export PYTHON_KEYRING_BACKEND=keyring.backends.fail.Keyring 
 $HOME/.local/bin/poetry install || \
                 ($HOME/.local/bin/poetry lock --no-update && $HOME/.local/bin/poetry install)
 #
- 
+ cd ${TARGET_DIR}
 # Missing Deps
 echo "Installing Missing Deps...:"
 
 rosdep update && rosdep install --from-paths src --ignore-src -r -y
- 
+apt install -y $(awk '{print $1}' src/arena/arena-rosnav/setup/install2/package.list)
+
 # Project Install
 echo "Installing Project...:"
 
@@ -49,8 +50,6 @@ exit 12
 
 colcon build
 
-export ROS_MASTER_URI=http://127.0.0.1:11311/
-export ROS_IP=127.0.0.1
  
 
 MARKER="# ARENA-ROSNAV"
@@ -64,9 +63,9 @@ do
       echo "Adding to $SHELL"
       echo '' >> "$SHELL"
       echo "$MARKER" >> "$SHELL"
-      echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL"
+#      echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$SHELL"
 #      echo '. "$(cd src/arena/arena-rosnav && poetry env info -p)/bin/activate"' >> "$SHELL"
-      echo 'source ${TARGET_DIR}/devel/setup.bash' >> "$SHELL"
+      echo 'source ${TARGET_DIR}/install/local_setup.bash' >> "$SHELL"
       echo '' >> "$SHELL"
     fi
   fi

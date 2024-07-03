@@ -42,14 +42,14 @@ RUN curl -o install1.sh https://raw.githubusercontent.com/Jokrasa1011/ros2-migra
 # Run the first install script
 RUN ./install1.sh
 
-# Source ROS2 setup
-RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-SHELL ["/bin/bash", "-c"]
-# Run the second install script
-RUN . ~/.bashrc && ./install2.sh
+# # Source ROS2 setup
+# RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+# SHELL ["/bin/bash", "-c"]
+# # Run the second install script
+# RUN . ~/.bashrc && ./install2.sh
 
-# Clean up
-RUN rm install1.sh install2.sh
+# # Clean up
+# RUN rm install1.sh install2.sh
 
 # Set a default command (you can override this when running the container)
 CMD ["/bin/bash"]
